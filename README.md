@@ -7,10 +7,12 @@ The aim of this re-make is to explore the puzzle concept in a bit more detail: T
 
 ## Building:
 Download the source code and run "make". Dependancies:
+
 SDL (https://www.libsdl.org/)
+
 SDL_Image 2.0.X (https://www.libsdl.org/projects/SDL_image/)
+
 SDL_Mixer 2.0.X (https://www.libsdl.org/projects/SDL_mixer/)
 
 ## Credits:
-Original "Quantum Entanglment" game by Team MYCTL, made in seven days in Python for PyWeek 33 (March 2022) (https://pyweek.org/e/pw33_colab/)
-Artwork and music by mit-mit.
+Original "Quantum Entanglment" game by Team MYCTL, made in seven days in Python for PyWeek 33 (March 2022) (https://pyweek.org/e/pw33_colab/). Artwork and music by mit-mit.
