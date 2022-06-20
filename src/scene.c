@@ -20,7 +20,7 @@ void InitScene(GameScene *scene) {
     TTF_Init();
     
     // Start-up main window
-    scene->window = SDL_CreateWindow("Quantum Entanglement", 0, 0, 
+    scene->window = SDL_CreateWindow("Quantum Entanglement: Retro Edition", 0, 0, 
         SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_HIDDEN);
     SDL_ShowWindow(scene->window);
     
