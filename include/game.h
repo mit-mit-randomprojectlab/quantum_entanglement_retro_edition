@@ -49,11 +49,11 @@ typedef struct {
 void InitGame(GameData *game, int level);
 
 // Event handling
-void OnEvent_Game(GameData *game, SDL_Event *event);
+void OnEvent_Game(GameData *game, SDL_Event *event, SceneRequest *scenerequest);
 int HandlePlayerMove(int new_ix, int new_iy, Player *player, PlaySpace *space);
 
 // Update functions
-void OnUpdate_Game(GameData *game);
+void OnUpdate_Game(GameData *game, SceneRequest *scenerequest);
 
 // Drawing Functions
 void DrawSpace(PlaySpace *space, Player *player, SDL_Renderer *renderer);

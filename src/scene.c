@@ -35,6 +35,9 @@ void InitScene(GameScene *scene) {
     // Start music
     Mix_PlayMusic(scene->resources.audio.music_A, -1);
     
+    scene->scenerequest.switch_scene_to = -1;
+    scene->scenerequest.flag = 0;
+    
     scene->running = 1;
     scene->sceneid = SCENE_MAINGAME;
 }
@@ -62,8 +65,10 @@ void RunScene(GameScene *scene, GameData *game) {
         OnUpdate(scene, game);
         OnDraw(scene, game);
         
-        if (game->switch_scene_to >= 0) {
-            SwitchScene(scene, game, game->switch_scene_to, game->next_level); // Reset for now
+        if (scene->scenerequest.switch_scene_to >= 0) {
+            SwitchScene(scene, game, scene->scenerequest.switch_scene_to, scene->scenerequest.flag);
+            scene->scenerequest.switch_scene_to = -1;
+            scene->scenerequest.flag = 0;
         }
         
         SDL_Delay(32);
@@ -74,6 +79,10 @@ void SwitchScene(GameScene *scene, GameData *game, int new_scene, int flag) {
     scene->sceneid = new_scene;
     
     switch (scene->sceneid) {
+        case SCENE_TITLE:
+            printf("starting title screen ...\n");
+            InitTitle();
+            break;
         case SCENE_MAINGAME:
             printf("starting level %d ...\n", flag);
             InitGame(game, flag);
@@ -87,8 +96,11 @@ void SwitchScene(GameScene *scene, GameData *game, int new_scene, int flag) {
 void OnEvent(GameScene *scene, GameData *game, SDL_Event *event) {
     
     switch (scene->sceneid) {
+        case SCENE_TITLE:
+            OnEvent_Title(event, &(scene->scenerequest));
+            break;
         case SCENE_MAINGAME:
-            OnEvent_Game(game, event);
+            OnEvent_Game(game, event, &(scene->scenerequest));
             break;
         default:
             printf("Invalid Scene ID (event)\n");
@@ -100,8 +112,11 @@ void OnEvent(GameScene *scene, GameData *game, SDL_Event *event) {
 void OnUpdate(GameScene *scene, GameData *game) {
     
     switch (scene->sceneid) {
+        case SCENE_TITLE:
+            OnUpdate_Title(&(scene->scenerequest));
+            break;
         case SCENE_MAINGAME:
-            OnUpdate_Game(game);
+            OnUpdate_Game(game, &(scene->scenerequest));
             break;
         default:
             printf("Invalid Scene ID (update)\n");
@@ -115,6 +130,9 @@ void OnDraw(GameScene *scene, GameData *game) {
     SDL_SetRenderDrawColor(scene->renderer, 0, 0, 0, 255);
     SDL_RenderClear(scene->renderer);
     switch (scene->sceneid) {
+        case SCENE_TITLE:
+            OnDraw_Title(scene->renderer);
+            break;
         case SCENE_MAINGAME:
             OnDraw_Game(scene->renderer, game);
             break;

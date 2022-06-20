@@ -8,6 +8,11 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 
+typedef struct {
+    int switch_scene_to;
+    int flag;
+} SceneRequest;
+
 void DrawCircle(SDL_Renderer * renderer, int32_t centreX, int32_t centreY, int32_t radius);
 SDL_Rect set_rect(int x, int y, int w, int h);
 

@@ -113,17 +113,23 @@ int HandlePlayerMove(int new_ix, int new_iy, Player *player, PlaySpace *space) {
 }
 
 // OnEvent_Game: handles user input during game
-void OnEvent_Game(GameData *game, SDL_Event *event) {
+void OnEvent_Game(GameData *game, SDL_Event *event, SceneRequest *scenerequest) {
     if (event->type == SDL_KEYDOWN && event->key.repeat == 0) {
         
         if (game->status == 1) {
-            game->switch_scene_to = 1;
-            game->next_level = game->level+1;
+            if ((game->level+1) >= game_resources->leveldata.nlist) {
+                scenerequest->switch_scene_to = 0; // back to title
+                scenerequest->flag = 0;
+            }
+            else {
+                scenerequest->switch_scene_to = 1;
+                scenerequest->flag = game->level+1;
+            }
             return;
         }
         else if (game->status == 2) {
-            game->switch_scene_to = 1;
-            game->next_level = game->level;
+            scenerequest->switch_scene_to = 1;
+            scenerequest->flag = game->level;
             return;
         }
         
@@ -165,7 +171,7 @@ void OnEvent_Game(GameData *game, SDL_Event *event) {
 */
 
 // OnUpdate_Game: handles general game updates
-void OnUpdate_Game(GameData *game) {
+void OnUpdate_Game(GameData *game, SceneRequest *scenerequest) {
     
     // Check for win/lose states
     if (game->status == 0) {
@@ -179,7 +185,7 @@ void OnUpdate_Game(GameData *game) {
         }
     }
     
-    if (game->switch_scene_to >= 0) {
+    if (scenerequest->switch_scene_to >= 0) {
         FreeSolution(game->solution);
     }
     

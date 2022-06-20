@@ -22,6 +22,9 @@ typedef struct {
 
 typedef struct {
     TTF_Font *font;
+    TTF_Font *fontbig;
+    Texture_wh title;
+    Texture_wh title2;
     Texture_wh start;
     Texture_wh complete;
     Texture_wh failed;

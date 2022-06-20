@@ -9,6 +9,7 @@
 #include "consts.h"
 
 #include "scene.h"
+#include "title.h"
 #include "game.h"
 
 /*
@@ -24,7 +25,8 @@ int main() {
     GameData game;
     
     // Run game Scene
-    SwitchScene(&scene, &game, SCENE_MAINGAME, 0);
+    //SwitchScene(&scene, &game, SCENE_MAINGAME, 0);
+    SwitchScene(&scene, &game, SCENE_TITLE, 0);
     RunScene(&scene, &game);
     EndScene(&scene);
     

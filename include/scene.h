@@ -13,6 +13,7 @@
 
 #include "resources.h"
 
+#include "title.h"
 #include "game.h"
 
 #define SCENE_TITLE 0
@@ -22,6 +23,7 @@ typedef struct {
     SDL_Window *window;
     SDL_Renderer *renderer;
     Resources resources;
+    SceneRequest scenerequest;
     int sceneid;
     int running;
 } GameScene;

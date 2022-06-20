@@ -116,8 +116,19 @@ void LoadResources(Resources *resources, SDL_Renderer *renderer) {
     
     // Font
     resources->text.font = TTF_OpenFont("data/font/TrenchThin-aZ1J.ttf", 32);
+    resources->text.fontbig = TTF_OpenFont("data/font/TrenchThin-aZ1J.ttf", 64);
     
     // gfx and textures
+    SDL_Color colort = {200, 200, 200, 255};
+    SDL_Surface *textt = TTF_RenderText_Solid(resources->text.fontbig, "Quantum Entanglement", colort);
+    LoadTexture_wh(renderer, textt, &(resources->text.title));
+    SDL_FreeSurface(textt);
+    
+    SDL_Color colort2 = {200, 200, 0, 255};
+    SDL_Surface *textt2 = TTF_RenderText_Solid(resources->text.font, "Retro Edition", colort2);
+    LoadTexture_wh(renderer, textt2, &(resources->text.title2));
+    SDL_FreeSurface(textt2);
+    
     SDL_Color color0 = {200, 200, 200, 255};
     SDL_Surface *text0 = TTF_RenderText_Solid(resources->text.font, "Start!", color0);
     LoadTexture_wh(renderer, text0, &(resources->text.start));
@@ -150,6 +161,9 @@ void LoadResources(Resources *resources, SDL_Renderer *renderer) {
 void FreeResources(Resources *resources) {
     
     TTF_CloseFont(resources->text.font);
+    TTF_CloseFont(resources->text.fontbig);
+    SDL_DestroyTexture(resources->text.title.texture);
+    SDL_DestroyTexture(resources->text.title2.texture);
     SDL_DestroyTexture(resources->text.start.texture);
     SDL_DestroyTexture(resources->text.complete.texture);
     SDL_DestroyTexture(resources->text.failed.texture);
