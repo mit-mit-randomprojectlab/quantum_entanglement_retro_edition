@@ -15,4 +15,9 @@ SDL_Image 2.0.X (https://www.libsdl.org/projects/SDL_image/)
 SDL_Mixer 2.0.X (https://www.libsdl.org/projects/SDL_mixer/)
 
 ## Credits:
-Original "Quantum Entanglment" game by Team MYCTL, made in seven days in Python for PyWeek 33 (March 2022) (https://pyweek.org/e/pw33_colab/). Artwork and music by mit-mit.
+Original "Quantum Entanglment" game by Team MYCTL, made in seven days in Python for PyWeek 33 (March 2022) (https://pyweek.org/e/pw33_colab/). Artwork, music and sfx by mit-mit.
+
+Fonts:
+
+"Trench" by NimaVisual (Freeware)
+https://www.fontspace.com/trench-font-f18737
