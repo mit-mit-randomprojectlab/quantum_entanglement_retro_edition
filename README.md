@@ -14,6 +14,11 @@ SDL_Image 2.0.X (https://www.libsdl.org/projects/SDL_image/)
 
 SDL_Mixer 2.0.X (https://www.libsdl.org/projects/SDL_mixer/)
 
+## Game Instructions:
+The game is controlled using the arrow keys: moves your character token (circle) in each game space. To complete the level, you must guide each of your player tokens to the green goal squares in each of the two (left and right) game spaces. Grey blocks are obstacles/walls and red blocks kill the player token and fail the level.
+
+Pressing space continuously engages the automatic level-solver.
+
 ## Credits:
 Original "Quantum Entanglment" game by Team MYCTL, made in seven days in Python for PyWeek 33 (March 2022) (https://pyweek.org/e/pw33_colab/). Artwork, music and sfx by mit-mit.
 
